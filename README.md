@@ -36,5 +36,5 @@ The **Banking Dashboard** is a comprehensive financial platform designed to help
 
 1. **Clone the repository:**
    ```bash
-   https://github.com/Dhruv64/csye7230-project
+   git clone https://github.com/Dhruv64/csye7230-project
    cd banking-dashboard
