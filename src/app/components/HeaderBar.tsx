@@ -23,7 +23,7 @@ const HeaderBar = () => {
                 <Link href="/dashboard">
                     <Button variant='outline' className='rounded-full italic'>Dashboard</Button>
                 </Link>
-                <Link href="/dashboard">
+                <Link href="/sign-in">
                     <Button  className='rounded-full italic'>Getting Started</Button>
                 </Link>
                 </div>
