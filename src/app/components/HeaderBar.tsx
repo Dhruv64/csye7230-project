@@ -15,7 +15,7 @@ const HeaderBar = () => {
         <div className="p-5 flex justify-between items-center border shadow-md">
             <div className='flex flex-row items-center gap-2'>
                 <Image src="/expenseLogo.png" height={40} width ={50} alt="logo"/>
-                <span className='text-green-700 font-bold text-2xl italic  '>Expense Tracker</span>
+                <span className='hidden sm:block  text-green-700 font-bold text-2xl italic  '>Expense Tracker</span>
             </div>
 
             {isSignedIn ? <UserButton/> :(
