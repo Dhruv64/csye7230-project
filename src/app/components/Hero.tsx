@@ -8,7 +8,6 @@ type Props = {}
 
 const Hero = (props: Props) => {
   return (
-    <section className='bg-gray-100 flex-col overflow-hidden'>
         <div className="flex flex-col overflow-hidden">
             <ContainerScroll
                 titleComponent={
@@ -41,8 +40,6 @@ const Hero = (props: Props) => {
                 />
             </ContainerScroll>
         </div>
-
-    </section>
   )
 }
 
