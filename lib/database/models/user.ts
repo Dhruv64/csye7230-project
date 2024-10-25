@@ -1,8 +1,12 @@
-import { time, timeStamp } from 'console';
 import {Schema,model,models} from 'mongoose';
 
 
 const userSchema = new Schema({
+    userId:{
+        type: String,
+        required:true,
+        unique:true
+    },
     email:{
         type: String,
         required:[true,'Email is required'],      
