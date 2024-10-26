@@ -2,18 +2,24 @@
 
 ## Project Overview
 
-The **Banking Dashboard** is a comprehensive financial platform designed to help banks and financial institutions manage customer data, transactions, accounts, and performance metrics in a user-friendly interface. The dashboard offers secure, real-time insights into banking operations with powerful data visualization and reporting tools.
+Built with the latest Next.js and TypeScript, **Expense Tracker with AI** is an advanced AI-powered financial advice tool designed to assist users in managing their finances. By allowing users to input their income, expenses, and budgets, Our Expense Tracker  offers personalized financial advice, helping users make informed financial decisions. 
 
-## Features
 
-- **Customer Management:** View, add, update, and delete customer details.
-- **Account Management:** Manage bank accounts, including savings, checking, loans, and more.
-- **Transaction Tracking:** Monitor deposits, withdrawals, transfers, and loan repayments.
-- **Reporting & Analytics:** Generate real-time reports on customer data, account balances, and financial performance.
-- **Data Visualization:** Interactive charts and graphs to visualize transaction trends and key metrics.
-- **Security:** Implemented role-based access control and encryption for secure data handling.
-- **Notifications & Alerts:** Real-time alerts for suspicious activity and low account balances.
-- **Responsive Design:** Fully responsive UI, compatible with both desktop and mobile devices.
+
+## 🔋 Features
+
+### 👉 Income and Expense Input
+Easily input and track your income and expenses, making financial management straightforward.
+
+### 👉 Budget Management
+Set and manage budgets effectively, ensuring better control over your spending.
+
+### 👉 Personalized Financial Advice
+Receive detailed, AI-generated financial advice tailored to your specific financial data, powered by OpenAI's GPT-4 model.
+
+### 👉 Responsive Design
+Enjoy a seamless experience on any device, with responsive layouts optimized for various screen sizes.
+
 
 ## Tech Stack
 
@@ -25,7 +31,7 @@ The **Banking Dashboard** is a comprehensive financial platform designed to help
 - **Backend:**
   - Node.js & Express.js for REST API development
   - MongoDB/PostgreSQL for database management
-  - JWT for authentication and authorization
+  - Clerk for authentication and authorization
 
 - **Deployment:**
   - Docker for containerization
