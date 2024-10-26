@@ -1,4 +1,4 @@
-# csye7230-project Banking Dashboard
+# csye7230-project Expense Tracker with AI
 
 ## Project Overview
 
