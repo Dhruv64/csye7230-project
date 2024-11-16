@@ -2,7 +2,7 @@ import {Schema,model,models} from 'mongoose';
 
 
 const userSchema = new Schema({
-    userId:{
+    clerkId:{
         type: String,
         required:true,
         unique:true
@@ -16,6 +16,12 @@ const userSchema = new Schema({
         type:String,
         required:[true,'Username is required'],
     },
+    firstName: {
+        type: String,
+      },
+    lastName: {
+        type: String,
+      },
     image:{
         type:String,
     }
