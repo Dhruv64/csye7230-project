@@ -16,3 +16,10 @@ declare type CreateUserParams = {
     lastName?: string;
     image: string;
 }
+
+declare type BudgetParams = {
+    name: string;
+    amount: number;
+    icon: string;
+    createdBy: string;
+}
