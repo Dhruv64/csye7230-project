@@ -1,11 +1,12 @@
 import {Schema,model,models} from 'mongoose';
 
 
-const userSchema = new Schema({
+export const userSchema = new Schema({
     clerkId:{
         type: String,
         required:true,
-        unique:true
+        unique:true,
+        index:true
     },
     email:{
         type: String,

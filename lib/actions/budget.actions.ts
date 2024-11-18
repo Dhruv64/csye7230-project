@@ -1,6 +1,10 @@
 import { connectToDB } from "../database/mongoose";
 import  Budget  from '../database/models/budget.model';
 import { BudgetParams } from "../../types";
+import { userSchema} from "../database/models/user.model";
+import mongoose from "mongoose";
+
+
 
 export const createBudget = async (budget : BudgetParams) =>{
 
@@ -11,9 +15,17 @@ export const createBudget = async (budget : BudgetParams) =>{
 }
 
 
-export const getAllBudgets = async(id : string) =>{
+export const getAllBudgets = async (userId: string) => {
     await connectToDB();
-    const budgets = await Budget.find({createdBy:id});
-    return budgets;
+    mongoose.model('user', userSchema);
 
-}
+
+  
+    const budgets = await Budget.find({ createdBy: userId }).populate({
+        path: 'createdBy',
+        model: 'user',
+        select: 'email ' // Select the fields you want to include
+    });
+  
+    return budgets;
+};

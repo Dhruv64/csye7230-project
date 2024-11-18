@@ -23,3 +23,11 @@ declare type BudgetParams = {
     icon: string;
     createdBy: string;
 }
+
+declare type IncomeParams = {
+    name : string;
+    amount : number;
+    icon : string;
+    createdBy : string;
+}
+

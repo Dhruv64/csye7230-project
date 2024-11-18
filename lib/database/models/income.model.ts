@@ -6,7 +6,7 @@ const incomeSchema = new Schema({
     required: [true, 'Income name is required'],
   },
   amount: {
-    type: String,
+    type: Number,
     required: [true, 'Income amount is required'],
   },
   icon: {

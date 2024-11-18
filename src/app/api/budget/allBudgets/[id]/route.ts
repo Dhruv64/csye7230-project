@@ -11,6 +11,7 @@ export const GET = async (req: Request, { params }: { params: { id: string } }) 
 
         return new Response(JSON.stringify(getBudgets), { status: 200 });
     } catch (err) {
+        console.error("Error fetching budgets:", err);
         return new Response(JSON.stringify({ message: "Failed to execute" }), { status: 500 });
     }
 };
