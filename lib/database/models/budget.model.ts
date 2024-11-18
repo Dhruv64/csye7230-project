@@ -14,7 +14,7 @@ const budgetSchema = new Schema({
       type: String,
     },
     createdBy: {
-      type: String,
+      type: Schema.Types.ObjectId,
       ref: 'user', // Reference to User model
       required: [true, 'Creator information is required'],
     }
