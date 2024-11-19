@@ -11,8 +11,10 @@
   "dependencies": {
     "@clerk/clerk-sdk-node": "^5.0.65",
     "@clerk/nextjs": "^5.7.2",
+    "@nextui-org/react": "^2.4.8",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.2",
     "@tabler/icons-react": "^3.20.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
