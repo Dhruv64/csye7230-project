@@ -1,4 +1,4 @@
-import {createBudget} from '../../../../lib/actions/budget.actions';
+import {createBudget} from '../../../../../lib/actions/budget.actions';
 
 export const POST = async (req: Request) => {
     try {
