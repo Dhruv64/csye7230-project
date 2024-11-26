@@ -15,9 +15,6 @@ const expenseSchema = new Schema({
       ref: 'budget', // Reference to Budgets collection
       required: [true, 'Budget ID is required'],
     },
-    icon :{
-        type: String,
-    },
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'user', // Reference to User model
