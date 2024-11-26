@@ -11,7 +11,6 @@ export const POST = async (req: Request) => {
             createdBy
         };  
 
-        console.log("Budget payload:", budget);
         const createBudgetResponse = await createBudget(budget);
         return new Response(JSON.stringify(createBudgetResponse), { status: 200 });
     

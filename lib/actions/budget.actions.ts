@@ -17,15 +17,16 @@ export const createBudget = async (budget : BudgetParams) =>{
 
 export const getAllBudgets = async (userId: string) => {
     await connectToDB();
-    mongoose.model('user', userSchema);
-
-
   
+    // Check if the model is already defined
+    const User = mongoose.models.user || mongoose.model("user", userSchema);
+  
+    // Fetch budgets and populate the user details
     const budgets = await Budget.find({ createdBy: userId }).populate({
-        path: 'createdBy',
-        model: 'user',
-        select: 'email ' // Select the fields you want to include
+      path: "createdBy",
+      model: User, 
+      select: "email", 
     });
   
     return budgets;
-};
+  };
