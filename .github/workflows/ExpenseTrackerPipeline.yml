@@ -1,0 +1,71 @@
+name: ExpenseTrackerPipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  StaticTest:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Clone Repository
+      - name: Clone Repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js (Install the correct Node.js version)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Make sure this matches the version your project requires
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        run: npm install
+
+  SecurityCheck:
+    name: Vulnerability Check
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Clone Repository
+      - name: Clone Repository
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Step 3: Install Dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Run Security Check
+      - name: Run Security Check
+        run: |
+          echo 'Running the security check...'
+          sleep 5s;
+          echo 'Running the security check...1'
+          sleep 3s;
+          echo 'Running the security check...2'
+          sleep 2s;
+          echo 'Running the security check...3'
+          sleep 3s;
+          npm audit
+
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [StaticTest, SecurityCheck]
+    steps:
+      - name: Deploy
+        run: |
+          echo 'Deploying the application...'
+          sleep 5s;
+          echo 'Deploying the application...1'
+          sleep 3s;
