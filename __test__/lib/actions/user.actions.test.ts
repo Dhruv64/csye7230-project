@@ -5,15 +5,15 @@ import { connectToDB } from '../../../lib/database/mongoose';
 import { handleError } from '../../../src/lib/utils';
 
 // Mock the dependencies
-jest.mock('../lib/database/mongoose', () => ({
+jest.mock('../../../lib/database/mongoose', () => ({
   connectToDB: jest.fn()
 }));
 
-jest.mock('../src/lib/utils', () => ({
+jest.mock('../../../src/lib/utils', () => ({
   handleError: jest.fn()
 }));
 
-jest.mock('../lib/database/models/user.model', () => {
+jest.mock('../../../lib/database/models/user.model', () => {
   return {
     __esModule: true,
     default: {

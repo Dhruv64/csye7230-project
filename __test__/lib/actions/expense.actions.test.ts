@@ -4,11 +4,11 @@ import Expense from '../../../lib/database/models/expense.model';
 import { m } from 'framer-motion';
 
 // Mock the dependencies
-jest.mock('../lib/database/mongoose', () => ({
+jest.mock('../../../lib/database/mongoose', () => ({
   connectToDB: jest.fn()
 }));
 
-jest.mock('../lib/database/models/expense.model', () => {
+jest.mock('../../../lib/database/models/expense.model', () => {
   return {
     __esModule: true,
     default: {

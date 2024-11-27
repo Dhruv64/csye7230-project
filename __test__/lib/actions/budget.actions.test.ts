@@ -4,11 +4,11 @@ import { connectToDB } from '../../../lib/database/mongoose';
 import Budget from '../../../lib/database/models/budget.model';
 
 // Mock the dependencies
-jest.mock('../lib/database/mongoose', () => ({
+jest.mock('../../../lib/database/mongoose', () => ({
   connectToDB: jest.fn()
 }));
 
-jest.mock('../lib/database/models/budget.model', () => {
+jest.mock('../../../lib/database/models/budget.model', () => {
   return {
     __esModule: true,
     default: {
