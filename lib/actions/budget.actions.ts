@@ -13,7 +13,6 @@ import mongoose from "mongoose";
  * @returns {Promise<Object>} - The created budget.
  */
 
-
 export const createBudget = async (budget: BudgetParams): Promise<object> => {
   await connectToDB();
   const newBudget = new Budget(budget);
@@ -27,7 +26,6 @@ export const createBudget = async (budget: BudgetParams): Promise<object> => {
  * @returns {Promise<Array<Object>>} - A list of budgets.
  */
 
-
 export const getAllBudgets = async (userId: string): Promise<Array<object>> => {
   await connectToDB();
   const User = mongoose.models.user || mongoose.model("user", userSchema);
@@ -37,8 +35,6 @@ export const getAllBudgets = async (userId: string): Promise<Array<object>> => {
     select: "email",
   });
   return budgets;
-};
-
 
 
 
@@ -70,3 +66,6 @@ export const deleteBudgetById = async (id : string) : Promise<object> => {
   const expenses = await Expense.deleteMany({budgetId : id})
   return budget;
 }
+
+};
+

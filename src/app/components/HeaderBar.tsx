@@ -1,7 +1,7 @@
 'use client'
 
 import React, { ReactNode } from 'react'
-import { Button } from '@/components/ui/button'
+import { Button } from '../../components/ui/button'
 import Image from 'next/image'
 import { useUser,UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
