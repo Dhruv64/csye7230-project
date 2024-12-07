@@ -10,6 +10,14 @@ const budgetSchema = new Schema({
       type: Number,
       required: [true, 'Budget amount is required'],
     },
+    totalExpense: {
+      type: Number,
+      default: 0,
+    },
+    totalItems:{
+      type: Number,
+      default: 0,
+    },
     icon: {
       type: String,
     },
