@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useState } from "react";
@@ -18,17 +19,17 @@ const BudgetList = () => {
       try {
         // Step 1: Fetch the user ID
         if (user?.id) {
-          const userResponse = await fetch(/api/user/${user.id});
+          const userResponse = await fetch(`/api/user/${user.id}`);
           if (userResponse.ok) {
             const userData = await userResponse.json();
             const id = userData?._id;
             setUserId(id);
 
             // Step 2: Fetch budgets using the user ID
-            const budgetResponse = await fetch(/api/budget/allBudgets/${id});
+            const budgetResponse = await fetch(`/api/budget/allBudgets/${id}`);
             if (budgetResponse.ok) {
               const budgetData = await budgetResponse.json();
-              setBudgetList(budgetData); // Assuming budgetData is an array of budgets.
+              setBudgetList(budgetData); // Assuming `budgetData` is an array of budgets.
             }
           }
         }

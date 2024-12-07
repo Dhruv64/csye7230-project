@@ -49,7 +49,7 @@ function BudgetItem({ budget }: { budget: BudgetParams }) {
               className="
               bg-primary h-2 rounded-full"
               style={{
-                width: ${calculateProgressPerc()}%,
+                width: `${calculateProgressPerc()}%`,
               }}
             ></div>
           </div>

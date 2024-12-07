@@ -81,7 +81,7 @@ function CreateBudgets({ id,onAddBudget }: CreateBudgetProps) {
       toast({
         variant: "destructive",
         title: "Error",
-        description: ${error},
+        description: `${error}`,
       });
     } 
     
