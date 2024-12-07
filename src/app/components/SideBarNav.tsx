@@ -4,7 +4,7 @@ import Image from "next/image";
 import { UserButton } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { menuList } from "@/constants/sidebarMenuList";
+import { menuList } from "../../constants/sidebarMenuList";
 
 const SidebarNav = () => {
   const path = usePathname();

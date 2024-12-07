@@ -1,12 +1,13 @@
 "use client";
 
 import Image from 'next/image';
-import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import { ContainerScroll } from "../../components/ui/container-scroll-animation";
 import { Typewriter } from 'react-simple-typewriter'
+import React from 'react';
 
-type Props = {}
 
-const Hero = (props: Props) => {
+
+const Hero = () => {
   return (
         <div className="flex flex-col overflow-hidden">
             <ContainerScroll

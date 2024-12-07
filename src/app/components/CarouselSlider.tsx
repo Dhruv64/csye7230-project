@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
-import {carouselData} from '@/constants/data';
+import { Carousel, Card } from "../../components/ui/apple-cards-carousel";
+import {carouselData} from '../../constants/data';
 
 
 export default function CarouselSlider() {
