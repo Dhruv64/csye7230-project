@@ -2,6 +2,7 @@ import { connectToDB } from "../database/mongoose";
 import  Budget  from '../database/models/budget.model';
 import { BudgetParams } from "../../types";
 import { userSchema} from "../database/models/user.model";
+import Expense from "../database/models/expense.model";
 import mongoose from "mongoose";
 
 
@@ -11,6 +12,7 @@ import mongoose from "mongoose";
  * @param {BudgetParams} budget - The budget details to create.
  * @returns {Promise<Object>} - The created budget.
  */
+
 export const createBudget = async (budget: BudgetParams): Promise<object> => {
   await connectToDB();
   const newBudget = new Budget(budget);
@@ -23,6 +25,7 @@ export const createBudget = async (budget: BudgetParams): Promise<object> => {
  * @param {string} userId - The ID of the user.
  * @returns {Promise<Array<Object>>} - A list of budgets.
  */
+
 export const getAllBudgets = async (userId: string): Promise<Array<object>> => {
   await connectToDB();
   const User = mongoose.models.user || mongoose.model("user", userSchema);
@@ -32,4 +35,37 @@ export const getAllBudgets = async (userId: string): Promise<Array<object>> => {
     select: "email",
   });
   return budgets;
+
+
+
+/**
+ * Fetches a budget by its ID.
+ * @param {string} id - The ID of the budget.
+ * @returns {Promise<Object>} - The budget.
+ */
+export const getBudgetById = async (id: string): Promise<object> => {
+  await connectToDB();
+  const budget = await Budget.findById(id);
+  return budget;
+}
+
+
+
+
+/**
+ * Deletes a budget by its ID.
+ * @param {string} id - The ID of the budget.
+ * @returns {Promise<Object>} - The deleted budget.
+ * @throws Will throw an error if the budget is not found.
+ */
+
+export const deleteBudgetById = async (id : string) : Promise<object> => {
+  await connectToDB();
+  const budget = await Budget.findByIdAndDelete(id);
+
+  const expenses = await Expense.deleteMany({budgetId : id})
+  return budget;
+}
+
 };
+
