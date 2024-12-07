@@ -21,6 +21,8 @@ declare type BudgetParams = {
     _id?: string;
     name: string;
     amount: number;
+    totalExpense?: number;
+    totalItems?: number;
     icon: string;
     createdBy: string;
     createdAt?: Date;
@@ -35,6 +37,7 @@ declare type IncomeParams = {
 
 
 declare type ExpenseParams = {
+    _id?: string;
     name : string;
     amount : number;
     budgetId : string;
