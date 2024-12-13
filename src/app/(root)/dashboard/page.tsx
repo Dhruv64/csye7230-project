@@ -9,7 +9,7 @@ import CardInfo from '../../components/CardInfo';
 import BudgetItem from './budgets/components/BudgetItem';
 
 
-import { ExpenseParams,BudgetParams,IncomeParams } from "../../../../types";
+import { ExpenseParams,BudgetParams,IncomeParams, CreateUserParams } from "../../../../types";
 
 
 
@@ -19,6 +19,10 @@ const Dashboard = () => {
   const [expensesList, setExpensesList] = useState<ExpenseParams[]>([]);
   const [budgetList, setBudgetList] = useState<BudgetParams[]>([]);
   const [incomeList, setIncomeList] = useState<BudgetParams[]>([]);
+  const [userData, setUserData] = useState<CreateUserParams | null>(null);
+
+
+
 
   useEffect(()=> {
     const fetchData = async () => {
@@ -27,9 +31,9 @@ const Dashboard = () => {
         if (user?.id) {
           const userResponse = await fetch(`/api/user/${user.id}`);
           if (userResponse.ok) {
-            const userData = await userResponse.json();
-            const id = userData?._id;
-            // setUserId(id);
+            const userDataResponse = await userResponse.json();
+            const id = userDataResponse?._id;
+            setUserData(userDataResponse);
 
             // Step 2: Fetch expenses using the user ID
             const expenseResponse = await fetch(`/api/expense/${id}`);
@@ -60,6 +64,11 @@ const Dashboard = () => {
 }, [user]);
 
 
+if (!userData) {
+  // Handle the case where userData is null
+  return <div>Loading user data...</div>;
+}
+
 
 
   if (!isLoaded || !isSignedIn) {
@@ -73,7 +82,7 @@ const Dashboard = () => {
       Here's what happening with your money, Lets Manage your expense
     </p>
 
-    <CardInfo budgetList={budgetList} incomeList={incomeList} />
+    <CardInfo userData={userData} budgetList={budgetList} incomeList={incomeList} />
     <div className="grid grid-cols-1 lg:grid-cols-3 mt-6 gap-5">
       <div className="lg:col-span-2">
         <BarChartDashboard budgetList={budgetList} />

@@ -1,8 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation' // Use next/navigation here for app router
-import { useUser, SignIn } from '@clerk/nextjs'
+import {  SignIn } from '@clerk/nextjs'
 import React from 'react'
 
 

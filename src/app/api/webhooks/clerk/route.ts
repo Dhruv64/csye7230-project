@@ -67,9 +67,7 @@ export async function POST(req: Request) {
     }
 
 
-    const newUser = await createUser(user) as { _id: string } | null | undefined;
-
-
+    const newUser = await createUser(user) as { _id: string }
 
 
     // Set public metadata

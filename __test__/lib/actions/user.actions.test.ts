@@ -88,10 +88,11 @@ describe('User Actions', () => {
 
     it('should throw an error if user is not found', async () => {
       const userId = 'nonexistent';
-
+    
       (User.findOne as jest.Mock).mockResolvedValue(null);
-
+    
       await expect(getUserById(userId)).rejects.toThrow('User not found');
     });
+    
   });
 });

@@ -8,17 +8,17 @@ jest.mock('../../../lib/database/mongoose', () => ({
   connectToDB: jest.fn()
 }));
 
-jest.mock('../../../lib/database/models/budget.model', () => {
-  return {
-    __esModule: true,
-    default: {
-      find: jest.fn(),
-      prototype: {
-        save: jest.fn()
-      }
-    }
-  };
-});
+jest.mock('../../../lib/database/models/budget.model', () => ({
+  __esModule: true,
+  default: {
+    find: jest.fn(),
+    create: jest.fn(),
+    prototype: {
+      save: jest.fn(),
+    },
+  },
+}));
+
 
 describe('Budget Actions', () => {
   beforeEach(() => {

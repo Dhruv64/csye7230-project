@@ -1,7 +1,9 @@
 import Image from "next/image";
-import HeaderBar from '@/app/components/HeaderBar'
+import HeaderBar from '../app/components/HeaderBar'
 import Hero from "./components/Hero";
 import CarouselSlider from "./components/CarouselSlider";
+import Footer from './components/Footer';
+import React from "react";
 
 export default function Home() {
   return (
@@ -11,6 +13,7 @@ export default function Home() {
         <Hero/>
         <CarouselSlider/>
     </section>
+    <Footer/>
     </>
   );
 }

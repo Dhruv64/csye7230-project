@@ -11,12 +11,13 @@ import { IncomeParams } from "../../types";
  * @returns {Promise<Object>} - The created income document.
  * @throws {Error} - If the income creation fails.
  */
-export const createIncome = async (incomeData : IncomeParams) : Promise<object> => {
+export const createIncome = async (incomeData: IncomeParams): Promise<object> => {
     await connectToDB();
     const newIncome = new Income(incomeData);
-    newIncome.save();
+    await newIncome.save();
     return newIncome;
-}
+  };
+  
 
 
 

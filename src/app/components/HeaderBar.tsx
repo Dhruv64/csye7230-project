@@ -18,7 +18,15 @@ const HeaderBar = () => {
                 <span className='hidden sm:block  text-green-700 font-bold text-2xl italic  '>Expense Tracker</span>
             </div>
 
-            {isSignedIn ? <UserButton/> :(
+            {isSignedIn ?
+            <div className='flex gap-5 items-center'>
+            <UserButton/>
+            <Link href="/dashboard">
+                    <Button variant='outline' className='rounded-full italic'>Dashboard</Button>
+            </Link>
+            </div>
+            
+            :(
                 <div className='flex gap-5 items-center'>
                 <Link href="/dashboard">
                     <Button variant='outline' className='rounded-full italic'>Dashboard</Button>

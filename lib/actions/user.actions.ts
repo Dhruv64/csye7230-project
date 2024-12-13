@@ -32,8 +32,36 @@ export async function getUserById(userId: string): Promise<object | undefined> {
   try {
     await connectToDB();
     const user = await User.findOne({ clerkId: userId });
-    if (!user) throw new Error("User not found");
+    if (!user) {
+      throw new Error('User not found');
+    }
     return JSON.parse(JSON.stringify(user));
+  } catch (error) {
+    handleError(error);
+  }
+}
+
+
+/**
+ * Updates the plan for a user in the database.
+ * @param {string} clerkId - The Clerk ID of the user to update.
+ * @param {string} plan - The new plan for the user (e.g., 'pro').
+ * @returns {Promise<Object | undefined>} - The updated user or undefined if an error occurs.
+ */
+export async function updateUserPlan(clerkId: string, plan: string): Promise<object | undefined> {
+  try {
+    await connectToDB();
+    const updatedUser = await User.findOneAndUpdate(
+      { clerkId }, // Find the user by clerkId
+      { plan },    // Update the `plan` field
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedUser) {
+      throw new Error('User not found');
+    }
+
+    return JSON.parse(JSON.stringify(updatedUser));
   } catch (error) {
     handleError(error);
   }

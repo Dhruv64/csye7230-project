@@ -1,34 +1,130 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 
 import { useUser } from "@clerk/nextjs";
 
 import { Button } from "../../../../components/ui/button";
+import { useToast } from "../../../../hooks/use-toast"
 
 
 
 const Credits = () => {
     const { user } = useUser();
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [activePlan, setActivePlan] = useState('');
+
+    const {toast} = useToast();
+
+
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-              // Step 1: Fetch the user ID
-              if (user?.id) {
-                const userResponse = await fetch(`/api/user/${user.id}`);
-                if (userResponse.ok) {
-                  const userData = await userResponse.json();
-                  const id = userData?._id;
-                }
-              }
-            } 
-            catch (err) {
-                console.error("Error fetching data:", err);
-                }
+      const fetchUserPlan = async () => {
+        if (!user) return;
+
+        try {
+          // Fetch the current plan for the user
+          const response = await fetch(`/api/user/${user?.id}`);
+          const data = await response.json();
+
+          if (response.ok && data.plan) {
+            setActivePlan(data.plan);
+            if (data.plan === 'pro') {
+              setSuccess(true); // Automatically mark as success if already "pro"
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching user plan:', error);
         }
-        fetchData();
-    }, []);
+      };
+
+      fetchUserPlan();
+    }, [user]);
+
+
+
+
+    const handleUpgradeToPro = async () => {
+      if (!user) return;
+
+      setLoading(true);
+      setSuccess(false);
+
+      try {
+        // Make API call to upgrade the plan
+        const response = await fetch(`/api/user/${user?.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            plan: 'pro'
+          }),
+        });
+
+        if (response.ok) {
+          setActivePlan('pro');
+          setSuccess(true);
+          toast({
+            description: "Your plan has been successfully upgraded to Pro!",
+        });
+        } else {
+          toast({
+            variant: "destructive",
+            description: "Failed to upgrade plan",
+          });
+        }
+      } catch (error) {
+        console.error('Error upgrading plan:', error);
+      }
+      
+      finally {
+        setLoading(false);
+      }
+    };
+
+
+    const handleUpgradeToBasic = async () => {
+      if (!user) return;
+
+      setLoading(true);
+      setSuccess(false);
+
+      try {
+        // Make API call to upgrade the plan
+        const response = await fetch(`/api/user/${user?.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            plan: 'basic'
+          }),
+        });
+
+        if (response.ok) {
+          setActivePlan('basic');
+          setSuccess(true);
+          toast({
+            description: "Your plan has been reverted back to Basic!",
+        });
+        } else {
+          toast({
+            variant: "destructive",
+            description: "Failed to upgrade plan",
+          });
+        }
+      } catch (error) {
+        console.error('Error upgrading plan:', error);
+      }
+      
+      finally {
+        setLoading(false);
+      }
+    };
+
+
 
   return (
 
@@ -176,9 +272,9 @@ const Credits = () => {
           </ul>
 
           <div className='text-center mt-5'>
-            <Button>
-                Purchase Now
-            </Button>
+              <Button onClick={handleUpgradeToPro} disabled={activePlan === 'pro'}>
+                  {loading ? 'Upgrading...' : activePlan === 'pro' ? 'Pro Activated' : 'Purchase Now'}
+              </Button>
         </div>
         </div>
 
@@ -282,10 +378,8 @@ const Credits = () => {
 
 
           <div className='text-center mt-5'>
-            <Button
-            disabled={true} 
-            >
-                Use Now !!
+           <Button  onClick={handleUpgradeToBasic} disabled={activePlan === 'basic'}>
+                  {loading ? 'Upgrading...' : activePlan === 'basic' ? 'Basic Activated' : 'Switch to Basic Plan'}
             </Button>
         </div>
 

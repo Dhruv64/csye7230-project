@@ -15,6 +15,7 @@ declare type CreateUserParams = {
     firstName?: string;
     lastName?: string;
     image: string;
+    plan?: string;
 }
 
 declare type BudgetParams = {

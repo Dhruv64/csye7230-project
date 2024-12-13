@@ -8,21 +8,27 @@ import {
   CircleDollarSign,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { BudgetParams,IncomeParams } from "../../../types";
+import { BudgetParams,IncomeParams,CreateUserParams } from "../../../types";
+import { Button } from '../../components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 
 
 
-function CardInfo({ budgetList, incomeList } : {budgetList : BudgetParams[], incomeList: IncomeParams[]}) {
+
+function CardInfo({ userData,budgetList, incomeList } : {userData: CreateUserParams, budgetList : BudgetParams[], incomeList: IncomeParams[]}) {
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalSpend, setTotalSpend] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const [financialAdvice, setFinancialAdvice] = useState("");
+  const {toast} = useToast();
+  const [advice, setAdvice] = useState<string>();
 
   useEffect(() => {
     if (budgetList.length > 0 || incomeList.length > 0) {
       CalculateCardInfo();
     }
   }, [budgetList, incomeList]);
+
 
 //   useEffect(() => {
 //     if (totalBudget > 0 || totalIncome > 0 || totalSpend > 0) {
@@ -39,8 +45,103 @@ function CardInfo({ budgetList, incomeList } : {budgetList : BudgetParams[], inc
 //     }
 //   }, [totalBudget, totalIncome, totalSpend]);
 
+
+  const fetchFinancialAdvice = async () => {
+    if (totalBudget > 0 && totalIncome > 0 && totalSpend > 0) {
+      if (userData.plan==="pro"){
+        const messageTransmission = {
+          message:`Based on the following financial data: 
+          - Total Budget: ${totalBudget} USD 
+          - Expenses: ${totalSpend} USD 
+          - Incomes: ${totalIncome} USD
+          Provide detailed financial advice in 5-6 sentences to help the user manage their finances more effectively.`
+        }
+      
+        try {
+          const response = await fetch(`/api/openAI`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(messageTransmission),
+          });
+      
+          if (response.ok) {
+            const responseData = await response.json();
+      
+            setAdvice(responseData);
+          } else {
+            console.error("Error fetching financial advice:", response.statusText);
+          }
+        } catch (error) {
+          console.error("An error occurred:", error);
+        }
+
+        }
+
+        if (userData.plan === "basic") {
+          const messageTransmission = {
+            message:`Based on the following financial data: 
+            - Total Budget: ${totalBudget} USD 
+            - Expenses: ${totalSpend} USD 
+            - Incomes: ${totalIncome} USD
+            Provide detailed financial advice in 2 sentences to help the user manage their finances more effectively.`
+          }
+        
+          try {
+            const response = await fetch(`/api/groqAI`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(messageTransmission),
+            });
+        
+            if (response.ok) {
+              const responseData = await response.json();
+        
+              setAdvice(responseData);
+            } else {
+              console.error("Error fetching financial advice:", response.statusText);
+            }
+          } catch (error) {
+            console.error("An error occurred:", error);
+          }
+        }
+        
+  }
+
+    else{
+      if (totalBudget === 0){
+        toast({
+          title: 'Error',
+          description: 'Please add a budget item to get financial advice',
+          variant:'destructive'
+        });
+      }
+
+      else if (totalIncome === 0){
+        toast({
+          title: 'Error',
+          description: 'Please add an income item to get financial advice',
+          variant:'destructive'
+        });
+      }
+
+      else if (totalSpend === 0){
+        toast({
+          title: 'Error',
+          description: 'Please add an expense item to get financial advice',
+          variant:'destructive'
+        });
+      }
+
+    }
+
+  }
+
   const CalculateCardInfo = () => {
-    console.log(budgetList);
+    // console.log(budgetList);
     let totalBudget_ = 0;
     let totalSpend_ = 0;
     let totalIncome_ = 0;
@@ -66,7 +167,7 @@ function CardInfo({ budgetList, incomeList } : {budgetList : BudgetParams[], inc
           <div className="p-7 border mt-4 -mb-1 rounded-2xl flex items-center justify-between">
             <div className="">
               <div className="flex mb-2 flex-row space-x-1 items-center ">
-                <h2 className="text-md ">Expense Smart AI</h2>
+                <h2 className="text-md ">Expense Smart AI (ON {userData.plan})</h2>
                 <Sparkles
                   className="rounded-full text-white w-10 h-10 p-2
     bg-gradient-to-r
@@ -77,8 +178,13 @@ function CardInfo({ budgetList, incomeList } : {budgetList : BudgetParams[], inc
                 />
               </div>
               <h2 className="font-light text-md">
-                {financialAdvice || "Loading financial advice..."}
+                <Button variant={'outline'} onClick={fetchFinancialAdvice} >
+                  Load Financial Advice
+                </Button>
               </h2>
+              <h2 className="font-light text-md">
+                {advice}
+                </h2>
             </div>
           </div>
 
