@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import IncomeList from '@/app/(root)/dashboard/income/components/IncomeList';
+import IncomeList from '../../dashboard/income/components/IncomeList';
 
 type Props = {}
 

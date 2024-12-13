@@ -1,7 +1,7 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-import { createUser} from '../../../../../lib/actions/user.actions'
+import { createUser } from '../../../../../lib/actions/user.actions'
 import { NextResponse } from "next/server";
 import { clerkClient } from "@clerk/clerk-sdk-node";
 
@@ -67,7 +67,10 @@ export async function POST(req: Request) {
     }
 
 
-    const newUser = await createUser(user);
+    const newUser = await createUser(user) as { _id: string } | null | undefined;
+
+
+
 
     // Set public metadata
     if (newUser) {

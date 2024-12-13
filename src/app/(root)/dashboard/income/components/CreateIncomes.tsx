@@ -8,18 +8,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "../../../../../components/ui/dialog";
 import EmojiPicker from "emoji-picker-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast"
+import { Button } from "../../../../../components/ui/button";
+import { Input } from "../../../../../components/ui/input";
+import { useToast } from "../../../../../hooks/use-toast"
 import { IncomeParams } from "../../../../../../types";
 
 interface CreateIncomesProps {
   id: string;
+  onAddIncomes: (income: IncomeParams) => void;
+
 }
 
-function CreateIncomes({ id }: CreateIncomesProps) {
+function CreateIncomes({ id ,onAddIncomes}: CreateIncomesProps) {
   const [emojiIcon, setEmojiIcon] = useState("😀");
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -58,6 +60,8 @@ function CreateIncomes({ id }: CreateIncomesProps) {
           toast({
             description: "Income Source created successfully",
           });
+
+          onAddIncomes(income);
 
 
           setIsDialogOpen(false); // Close the dialog
