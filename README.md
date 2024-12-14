@@ -43,7 +43,7 @@ Enjoy a seamless experience on any device, with responsive layouts optimized for
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Dhruv64/csye7230-project
-   cd banking-dashboard
+   cd ExpenseTracker
 
 
 ## ENV. Variables
