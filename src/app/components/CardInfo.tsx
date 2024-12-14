@@ -29,21 +29,6 @@ function CardInfo({ userData,budgetList, incomeList } : {userData: CreateUserPar
   }, [budgetList, incomeList]);
 
 
-//   useEffect(() => {
-//     if (totalBudget > 0 || totalIncome > 0 || totalSpend > 0) {
-//       const fetchFinancialAdvice = async () => {
-//         const advice = await getFinancialAdvice(
-//           totalBudget,
-//           totalIncome,
-//           totalSpend
-//         );
-//         setFinancialAdvice(advice);
-//       };
-
-//       fetchFinancialAdvice();
-//     }
-//   }, [totalBudget, totalIncome, totalSpend]);
-
 
   const fetchFinancialAdvice = async () => {
     if (totalBudget > 0 && totalIncome > 0 && totalSpend > 0) {
