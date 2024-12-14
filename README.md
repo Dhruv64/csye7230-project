@@ -43,7 +43,7 @@ Enjoy a seamless experience on any device, with responsive layouts optimized for
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Dhruv64/csye7230-project
-   cd banking-dashboard
+   cd ExpenseTracker
 
 
 ## ENV. Variables
@@ -54,9 +54,14 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
+SIGNING_SECRET=
 
 
 # MONGODB
 MONGODB_URL=
-```
+
+GROQ_API_KEY=
+
+OPENAI_API_KEY=
