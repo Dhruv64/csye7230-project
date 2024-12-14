@@ -19,7 +19,6 @@ function CardInfo({ userData,budgetList, incomeList } : {userData: CreateUserPar
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalSpend, setTotalSpend] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
-  const [financialAdvice, setFinancialAdvice] = useState("");
   const {toast} = useToast();
   const [advice, setAdvice] = useState<string>();
 
