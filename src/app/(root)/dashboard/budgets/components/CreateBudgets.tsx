@@ -150,7 +150,7 @@ function CreateBudgets({ id,onAddBudget }: CreateBudgetProps) {
               className="mt-5 w-full rounded-full"
               onClick={onCreateIncomes}
             >
-              {submitting ? 'Submitting' : "Create Income"}
+              {submitting ? 'Submitting' : "Create Budget"}
             </Button>
           </DialogFooter>
         </DialogContent>
